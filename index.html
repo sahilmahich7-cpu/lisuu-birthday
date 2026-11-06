@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffe8f0">
+<title>For Lisuu 💗</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap');
+:root{--pink:#f6a9c5;--hot:#e86f9c;--pale:#fff2f7;--cream:#fffaf4;--ink:#70465a}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at top,#fff 0,#fff0f6 45%,#ffe2ed 100%);color:var(--ink);font-family:'Baloo 2',system-ui,sans-serif;overflow-x:hidden}
+button{font:inherit;border:0;cursor:pointer}
+.screen{min-height:100svh;display:none;align-items:center;justify-content:center;padding:28px 16px;position:relative}
+.screen.active{display:flex;animation:fade .7s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.panel{width:min(720px,100%);text-align:center;background:#ffffffc9;border:2px solid #fff;border-radius:30px;padding:clamp(22px,5vw,42px);box-shadow:0 18px 55px #d77d9b30;backdrop-filter:blur(8px)}
+h1,h2,p{margin-top:0}
+h1{font-size:clamp(2rem,7vw,3.6rem);line-height:1.05;color:#d95f91}
+h2{color:#d95f91;font-size:clamp(1.6rem,5vw,2.4rem)}
+.script{font-family:'Caveat',cursive}
+.small{font-size:1.05rem}
+.pill{background:linear-gradient(135deg,#f59cbd,#e96f9d);color:white;border-radius:999px;padding:12px 26px;box-shadow:0 7px 16px #e77aa14a;margin:7px;font-weight:700}
+.pill.alt{background:#fff;color:#d95f91;border:1px solid #f4b5cb}
+.pill:active{transform:scale(.97)}
+.envelope{width:190px;height:130px;margin:28px auto 20px;position:relative;background:#f4a9c4;border-radius:8px;box-shadow:0 12px 22px #bd6d8a35;cursor:pointer}
+.envelope:before{content:"";position:absolute;inset:0;background:#f9c4d6;clip-path:polygon(0 0,50% 55%,100% 0);transform-origin:top;transition:transform .7s;z-index:3}
+.envelope:after{content:"";position:absolute;inset:0;background:#e98aad;clip-path:polygon(0 100%,0 0,50% 53%,100% 0,100% 100%)}
+.envelope.open:before{transform:rotateX(180deg)}
+.letter{position:absolute;left:12px;right:12px;bottom:12px;height:90px;background:#fffaf5;border-radius:5px;display:grid;place-items:center;font-size:2rem;transition:transform .7s;z-index:2}
+.envelope.open .letter{transform:translateY(-75px)}
+.panda{font-size:4.5rem;animation:bob 2s infinite ease-in-out}
+@keyframes bob{50%{transform:translateY(-8px) rotate(2deg)}}
+.cake-wrap{margin:18px auto 12px;max-width:360px;perspective:800px}
+.cake{height:220px;position:relative;transform-style:preserve-3d;transition:transform 1s}
+.cake-base{position:absolute;bottom:10px;left:8%;width:84%;height:115px;border-radius:18px 18px 26px 26px;background:linear-gradient(90deg,#e88bad,#ffd4e2 50%,#e88bad);box-shadow:inset 0 -16px #d86e96,0 15px 22px #b85e8035}
+.cake-top{position:absolute;bottom:105px;left:8%;width:84%;height:50px;border-radius:50%;background:#fff0f5;border:5px solid #f5b4cc}
+.cake-top span{font-family:'Caveat';font-weight:700;font-size:1.2rem;color:#d45b8b;display:block;padding-top:8px}
+.candle{position:absolute;bottom:150px;width:9px;height:43px;background:repeating-linear-gradient(45deg,#fff 0 6px,#f18bb0 6px 12px);border-radius:4px;z-index:4}
+.candle:before{content:"";position:absolute;top:-15px;left:1px;width:7px;height:13px;background:#ffb84f;border-radius:50% 50% 45% 45%;filter:drop-shadow(0 0 7px #ffbf5e);animation:flicker .7s infinite alternate}
+.c1{left:34%}.c2{left:49%}.c3{left:64%}
+@keyframes flicker{to{transform:scale(.75) rotate(10deg);opacity:.7}}
+.cake.cut{transform:rotateY(-12deg) rotateZ(-2deg)}
+.cake.cut .cake-base{clip-path:polygon(0 0,100% 0,100% 100%,0 100%);background:linear-gradient(90deg,#e88bad 0 48%,#fff0f5 48% 52%,#e88bad 52%)}
+.gift-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.gift{background:#fff7fb;border:2px dashed #f2a7c2;border-radius:20px;padding:18px 10px;min-height:145px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#c85d88;font-weight:700;transition:.2s}
+.gift:hover{transform:translateY(-5px);background:#fff}
+.gift .emoji{font-size:3rem}
+.gift-detail{display:none;margin-top:20px;text-align:left;background:#fffaf5;border:2px solid #f8d2df;border-radius:18px;padding:20px;box-shadow:inset 0 0 25px #f7dbe455}
+.gift-detail.show{display:block;animation:fade .5s}
+.letter-paper{font-family:'Caveat',cursive;font-size:1.45rem;line-height:1.35;white-space:pre-wrap;color:#70465a;background:repeating-linear-gradient(#fffaf3 0 34px,#f5e5df 35px 36px);padding:18px;border-radius:12px}
+.collage{width:100%;height:auto;display:block;border-radius:14px;border:5px solid white;box-shadow:0 8px 25px #b45f7d30}
+.bouquet{font-size:6rem;text-align:center;animation:sway 3s infinite ease-in-out}
+@keyframes sway{50%{transform:rotate(5deg) scale(1.04)}}
+.footer{font-family:'Caveat';font-size:1.4rem;color:#d8759b;margin-top:18px}
+.heart{position:fixed;bottom:-30px;pointer-events:none;animation:floatUp 5s linear forwards;z-index:10}
+@keyframes floatUp{to{transform:translateY(-110vh) rotate(35deg);opacity:0}}
+.confetti{position:fixed;top:-15px;width:9px;height:14px;z-index:20;pointer-events:none;animation:fall 3.5s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.2}}
+@media(max-width:520px){.gift-grid{grid-template-columns:1fr}.gift{min-height:105px;flex-direction:row;gap:15px}.cake{transform:scale(.9)}.panel{border-radius:24px}}
+</style>
+</head>
+<body>
+<section class="screen active" id="welcome">
+ <div class="panel">
+  <div class="script small">A tiny surprise, made with love 💌</div>
+  <div class="envelope" id="envelope" aria-label="Open envelope"><div class="letter">💗</div></div>
+  <div class="panda">🐼</div>
+  <h1 class="script">Baby, wanna see a surprise?</h1>
+  <p class="small">For my favourite birthday girl 🌷</p>
+  <div><button class="pill alt" id="noBtn">NO 🙈</button><button class="pill" id="yesBtn">YES 💗</button></div>
+  <p id="noText" class="script" style="font-size:1.35rem;min-height:28px"></p>
+ </div>
+</section>
+
+<section class="screen" id="cakeScreen">
+ <div class="panel">
+  <div class="script small">It's your special day, Lisuu! 🎀</div>
+  <h1 class="script">Happy 18th Birthday!</h1>
+  <div class="cake-wrap">
+   <div class="cake" id="cake">
+    <div class="cake-base"></div><div class="cake-top"><span>Happy birthday<br>my sweet heart 💋💗</span></div>
+    <div class="candle c1"></div><div class="candle c2"></div><div class="candle c3"></div>
+   </div>
+  </div>
+  <p class="script" style="font-size:1.45rem">Make a wish and cut your cake! ✨</p>
+  <button class="pill" id="cutBtn">Cut the cake 🎂</button>
+  <p id="cakeMsg" class="script" style="font-size:1.4rem;min-height:30px"></p>
+  <button class="pill" id="toGifts" style="display:none">Shall we explore your birthday gifts? 👀</button>
+ </div>
+</section>
+
+<section class="screen" id="giftsScreen">
+ <div class="panel">
+  <div class="script small">A little something for you 💝</div>
+  <h1 class="script">Your birthday gifts, baby!</h1>
+  <p>Open them in any order 😺</p>
+  <div class="gift-grid">
+   <button class="gift" data-gift="one"><span class="emoji">💌</span><span>Open me first 😺</span></button>
+   <button class="gift" data-gift="two"><span class="emoji">🎁</span><span>Open me first 😺</span></button>
+   <button class="gift" data-gift="three"><span class="emoji">💐</span><span>Open me first 😺</span></button>
+  </div>
+  <div class="gift-detail" id="one">
+   <h2 class="script">A little letter for you 💗</h2>
+   <div class="letter-paper">SOOO..... HAPPIEST BIRTHDAY JAANUUU🎂😺💐👀 dekho kaisa laga surprise 😉😘 vaise toh uk itna kuch bolta nhi mai (until vo tumhare carrier ki baat ho 😅) but but but...i wishh tum bohottttt success ho life me may god always bless you may god fulfill all your desires, aaj 18 ki ho gai ho bohot sari responsibility bhi aaye gi but mai hu na 😉 im with u cutiee  abhi toh yaar maine bohot kuch plan kiya tha tumhare birthday k liye but abhi tumhare pass nhi hu na mai ☹️but koina jab mai aau ga tab dekhe ge abhi k liye is se adjust karo samjhi 😋😌 I LOVE YOU SOOOOOOOOOOOO MUCHHHHH 😘😘😘😘😘😘ummhaaa😘😘😘 
+
+Tum bolti ho hamersa ki mai kitni bakwas karti hu but mere kaano se suno kabhi vo baatain muje kaisi lagti hai pata chale ga tumko meri life me bohot problems thi fir ak or add ho gai 😌 but is problem ne meri saaarriiii problems dur kardi aaj hamko 1 saal se bhi jada ho gaya hai sath me or shadi tak muje ye problem sath chahiye 
+Meri life me tumhara bohot bada role hai kabhi ye mat sochna ki tum kisi k liye valuable nhi ho kuch bhi karne se phale a baar mere bare me sochna baki tumhara ye chota sa supporter hamesha tumhare sath hai 
+Jada bakwas toh nhi karu ga bs baby hamesha khush rhena hasti rhena hhamesha muje pareshan karti rhena or meri galtiyo par muje sudhrti rhena 
+At the end you are my pyariiiiii siii cutu sii rasmalai 😘
+And again happy Birthday darling 🎈🎊</div>
+  </div>
+  <div class="gift-detail" id="two">
+   <h2 class="script">Our little memory corner 📸</h2>
+   <p style="text-align:center">A collage made just for you, Lisuu 💗</p>
+   <img class="collage" src="assets/lisuu-collage.png" alt="Birthday memory collage">
+  </div>
+  <div class="gift-detail" id="three">
+   <h2 class="script" style="text-align:center">A little bunch for you 🌷</h2>
+   <div class="bouquet">💐</div>
+   <div class="letter-paper">Ye meri pyarii si bacchi k liye thode se 🌺 kuch saal toh adjust karo ak din tumhare birthday par real vala la k dunga 😌 baki baby ye he tha surprise i hope tumko acha laga ho socha bohot kuch tha but uk time nhi mila or ik mai time de bhi nhi pata tumko but uk how much i love you soo bs kuch khash nhi tha try kiya maine pura i hope u like it 
+
+One again HAPPY BIRTHDAY LISUU 🎊🎈🎂</div>
+  </div>
+  <div class="footer">Made with lots of love, just for you 💗</div>
+ </div>
+</section>
+<script>
+const $=id=>document.getElementById(id);
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function hearts(n=12){for(let i=0;i<n;i++){const e=document.createElement('div');e.className='heart';e.textContent=['💗','💕','💖','🌸','✨'][Math.floor(Math.random()*5)];e.style.left=Math.random()*100+'vw';e.style.animationDuration=(3+Math.random()*3)+'s';e.style.fontSize=(16+Math.random()*22)+'px';document.body.appendChild(e);setTimeout(()=>e.remove(),6500)}}
+function celebrate(){for(let i=0;i<85;i++){const e=document.createElement('i');e.className='confetti';e.style.left=Math.random()*100+'vw';e.style.background=['#f08db2','#ffd36e','#d9a7ed','#fff'][i%4];e.style.animationDelay=Math.random()*1.2+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),5000)}hearts(28)}
+$('envelope').addEventListener('click',()=> $('envelope').classList.toggle('open'));
+$('noBtn').addEventListener('click',()=>{$('noText').textContent='Sorry baby, please YES bolo 🥺';hearts(5)});
+$('yesBtn').addEventListener('click',()=>{ $('envelope').classList.add('open');setTimeout(()=>show('cakeScreen'),500);hearts(10)});
+$('cutBtn').addEventListener('click',()=>{ $('cake').classList.add('cut');$('cakeMsg').textContent='YAYYYY! Happy birthday, Lisuu! 🎉💗';$('cutBtn').disabled=true;$('cutBtn').textContent='Cake cut ho gaya! 💕';$('toGifts').style.display='inline-block';celebrate()});
+$('toGifts').addEventListener('click',()=>{show('giftsScreen');hearts(14)});
+document.querySelectorAll('[data-gift]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.gift-detail').forEach(d=>d.classList.remove('show'));$(b.dataset.gift).classList.add('show');$(b.dataset.gift).scrollIntoView({behavior:'smooth',block:'nearest'});hearts(7)}));
+setInterval(()=>{if(Math.random()>.55)hearts(1)},5000);
+</script>
+</body>
+</html>
