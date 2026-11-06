@@ -29,7 +29,14 @@ h2{color:#d95f91;font-size:clamp(1.6rem,5vw,2.4rem)}
 .envelope.open:before{transform:rotateX(180deg)}
 .letter{position:absolute;left:12px;right:12px;bottom:12px;height:90px;background:#fffaf5;border-radius:5px;display:grid;place-items:center;font-size:2rem;transition:transform .7s;z-index:2}
 .envelope.open .letter{transform:translateY(-75px)}
-.panda{font-size:4.5rem;animation:bob 2s infinite ease-in-out}
+.panda{width:150px;height:155px;margin:18px auto 8px;position:relative;animation:bob 2s infinite ease-in-out}
+.panda .head{position:absolute;top:2px;left:38px;width:74px;height:68px;border-radius:50%;background:#fff;border:4px solid #29232a;box-shadow:inset 0 -5px #f6dce5;z-index:2;font-size:2.5rem;line-height:60px}
+.panda .ear{position:absolute;top:0;width:31px;height:31px;border-radius:50%;background:#29232a}.panda .ear.left{left:34px}.panda .ear.right{right:34px}
+.panda .body{position:absolute;top:62px;left:42px;width:66px;height:75px;border-radius:45% 45% 38% 38%;background:#fff;border:4px solid #29232a}
+.panda .arm{position:absolute;top:77px;width:30px;height:48px;border-radius:22px;background:#29232a}.panda .arm.left{left:23px;transform:rotate(24deg)}.panda .arm.right{right:23px;transform:rotate(-24deg)}
+.panda .leg{position:absolute;top:122px;width:36px;height:25px;border-radius:50%;background:#29232a}.panda .leg.left{left:34px}.panda .leg.right{right:34px}
+.panda .tears{display:none;position:absolute;top:45px;left:56px;color:#69bce8;font-size:1.5rem;z-index:4;letter-spacing:18px}.panda.cry .tears{display:block;animation:tear 1s infinite alternate}.panda.cry .head{filter:saturate(.8)}
+@keyframes tear{to{transform:translateY(9px);opacity:.5}}
 @keyframes bob{50%{transform:translateY(-8px) rotate(2deg)}}
 .cake-wrap{margin:18px auto 12px;max-width:360px;perspective:800px}
 .cake{height:220px;position:relative;transform-style:preserve-3d;transition:transform 1s}
@@ -40,8 +47,11 @@ h2{color:#d95f91;font-size:clamp(1.6rem,5vw,2.4rem)}
 .candle:before{content:"";position:absolute;top:-15px;left:1px;width:7px;height:13px;background:#ffb84f;border-radius:50% 50% 45% 45%;filter:drop-shadow(0 0 7px #ffbf5e);animation:flicker .7s infinite alternate}
 .c1{left:34%}.c2{left:49%}.c3{left:64%}
 @keyframes flicker{to{transform:scale(.75) rotate(10deg);opacity:.7}}
-.cake.cut{transform:rotateY(-12deg) rotateZ(-2deg)}
-.cake.cut .cake-base{clip-path:polygon(0 0,100% 0,100% 100%,0 100%);background:linear-gradient(90deg,#e88bad 0 48%,#fff0f5 48% 52%,#e88bad 52%)}
+.cake{transition:transform .8s}.cake.cut{transform:rotateY(-8deg) rotateZ(-3deg)}
+.cake.cut .cake-base{clip-path:polygon(0 0,100% 0,100% 100%,0 100%);background:linear-gradient(90deg,#e88bad 0 44%,#fff0f5 44% 56%,#e88bad 56%)}
+.cake.cut:after{content:'';position:absolute;right:8%;bottom:12px;width:27%;height:100px;background:linear-gradient(90deg,#fff0f5,#f6a9c5);border:3px solid #e88bad;border-radius:12px;transform:translate(22px,-5px) rotate(12deg);box-shadow:0 12px 18px #a75a7933;animation:sliceOut .8s forwards}
+@keyframes sliceOut{to{transform:translate(55px,-14px) rotate(18deg)}}
+.knife{display:inline-flex;align-items:center;gap:8px;margin:6px auto 10px;padding:10px 17px;border-radius:999px;background:#fff;border:2px dashed #e88bad;color:#c85d88;touch-action:none;user-select:none;cursor:grab;font-weight:700}.knife.dragging{background:#ffe4ef;transform:scale(1.05)}.knife .blade{font-size:1.8rem;display:inline-block;transform:rotate(-35deg)}.cut-hint{font-size:1rem;color:#a66b82}
 .gift-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
 .gift{background:#fff7fb;border:2px dashed #f2a7c2;border-radius:20px;padding:18px 10px;min-height:145px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#c85d88;font-weight:700;transition:.2s}
 .gift:hover{transform:translateY(-5px);background:#fff}
@@ -65,7 +75,7 @@ h2{color:#d95f91;font-size:clamp(1.6rem,5vw,2.4rem)}
  <div class="panel">
   <div class="script small">A tiny surprise, made with love 💌</div>
   <div class="envelope" id="envelope" aria-label="Open envelope"><div class="letter">💗</div></div>
-  <div class="panda">🐼</div>
+  <div class="panda" id="panda"><span class="ear left"></span><span class="ear right"></span><div class="body"></div><span class="arm left"></span><span class="arm right"></span><span class="leg left"></span><span class="leg right"></span><div class="head">🐼</div><span class="tears">💧💧</span></div>
   <h1 class="script">Baby, wanna see a surprise?</h1>
   <p class="small">For my favourite birthday girl 🌷</p>
   <div><button class="pill alt" id="noBtn">NO 🙈</button><button class="pill" id="yesBtn">YES 💗</button></div>
@@ -83,8 +93,9 @@ h2{color:#d95f91;font-size:clamp(1.6rem,5vw,2.4rem)}
     <div class="candle c1"></div><div class="candle c2"></div><div class="candle c3"></div>
    </div>
   </div>
-  <p class="script" style="font-size:1.45rem">Make a wish and cut your cake! ✨</p>
-  <button class="pill" id="cutBtn">Cut the cake 🎂</button>
+  <p class="script" style="font-size:1.45rem">Make a wish, Lisuu! ✨</p>
+  <div class="knife" id="knife" role="button" aria-label="Drag the knife across the cake"><span class="blade">🔪</span><span>Drag me across the cake</span></div>
+  <p class="cut-hint">Touch the knife and swipe across the cake to cut it 💗</p>
   <p id="cakeMsg" class="script" style="font-size:1.4rem;min-height:30px"></p>
   <button class="pill" id="toGifts" style="display:none">Shall we explore your birthday gifts? 👀</button>
  </div>
@@ -131,9 +142,10 @@ function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.re
 function hearts(n=12){for(let i=0;i<n;i++){const e=document.createElement('div');e.className='heart';e.textContent=['💗','💕','💖','🌸','✨'][Math.floor(Math.random()*5)];e.style.left=Math.random()*100+'vw';e.style.animationDuration=(3+Math.random()*3)+'s';e.style.fontSize=(16+Math.random()*22)+'px';document.body.appendChild(e);setTimeout(()=>e.remove(),6500)}}
 function celebrate(){for(let i=0;i<85;i++){const e=document.createElement('i');e.className='confetti';e.style.left=Math.random()*100+'vw';e.style.background=['#f08db2','#ffd36e','#d9a7ed','#fff'][i%4];e.style.animationDelay=Math.random()*1.2+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),5000)}hearts(28)}
 $('envelope').addEventListener('click',()=> $('envelope').classList.toggle('open'));
-$('noBtn').addEventListener('click',()=>{$('noText').textContent='Sorry baby, please YES bolo 🥺';hearts(5)});
+$('noBtn').addEventListener('click',()=>{$('noText').textContent='Nooo baby! Please YES bolo 🥺';$('panda').classList.add('cry');$('panda').querySelector('.head').textContent='🥺';hearts(5)});
+$('yesBtn').addEventListener('click',()=>{$('panda').classList.remove('cry');$('panda').querySelector('.head').textContent='🐼';});
 $('yesBtn').addEventListener('click',()=>{ $('envelope').classList.add('open');setTimeout(()=>show('cakeScreen'),500);hearts(10)});
-$('cutBtn').addEventListener('click',()=>{ $('cake').classList.add('cut');$('cakeMsg').textContent='YAYYYY! Happy birthday, Lisuu! 🎉💗';$('cutBtn').disabled=true;$('cutBtn').textContent='Cake cut ho gaya! 💕';$('toGifts').style.display='inline-block';celebrate()});
+const knife=$('knife');let startX=null,startY=null;knife.addEventListener('pointerdown',e=>{if($('cake').classList.contains('cut'))return;startX=e.clientX;startY=e.clientY;knife.classList.add('dragging');knife.setPointerCapture(e.pointerId)});knife.addEventListener('pointerup',e=>{knife.classList.remove('dragging');if(startX!==null && Math.abs(e.clientX-startX)>65){$('cake').classList.add('cut');$('cakeMsg').textContent='YAYYYY! You cut your cake, Lisuu! 🎉💗';knife.innerHTML='<span class="blade">🔪</span><span>Beautifully cut! 💕</span>';knife.style.pointerEvents='none';$('toGifts').style.display='inline-block';celebrate()}startX=null;startY=null});
 $('toGifts').addEventListener('click',()=>{show('giftsScreen');hearts(14)});
 document.querySelectorAll('[data-gift]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.gift-detail').forEach(d=>d.classList.remove('show'));$(b.dataset.gift).classList.add('show');$(b.dataset.gift).scrollIntoView({behavior:'smooth',block:'nearest'});hearts(7)}));
 setInterval(()=>{if(Math.random()>.55)hearts(1)},5000);
